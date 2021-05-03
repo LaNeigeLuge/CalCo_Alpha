@@ -19,10 +19,7 @@ import pytz
 import math
 from config import *
 import worker
-from datetime import datetime
-import jsondatetime as json
 from dateutil import parser
-
 logging.basicConfig(level=logging.DEBUG)
 
  
@@ -73,7 +70,6 @@ def right_part(draw):
 
     logging.info("Drawing right part ...")
     length = len(data)
-    print (data)
     start_hours = [] 
     end_hours = []
 
@@ -82,15 +78,6 @@ def right_part(draw):
     for k in range(length):
         y = offset_top + bar_top + offset_allday + per_hour * k
 
-
-        # for every but the first, draw separator before
-#        if k > 0:
-            # separator = dotted line with every fourth pixel
-#            for j in range(offset_left + bar_left*2, width, 4):
-#                draw.point([(j, y)])
-
-
-
         #Convert str date to dateTime
         #Add the conversion in hours lists
         for date in data:
@@ -98,17 +85,24 @@ def right_part(draw):
             start_hours.append( datetime_obj.strftime('%H:%M'))
             datetime_obj2 = parser.parse(date['end']["dateTime"])
             end_hours.append( datetime_obj2.strftime('%H:%M'))
-
-        textoffs_y = math.floor((per_hour - text_size) / 2)
-
-        # draw the hour number
-
-
+        textoffs_y = math.floor((per_hour - text_size)/2 )
         #Concatenation to write
-        events = start_hours[k] + "-" + end_hours[k] + " - " + data[k]["organizer"]["emailAddress"]["name"]
+        events =  start_hours[k] + "-" + end_hours[k] + "\n " + data[k]["organizer"]["emailAddress"]["name"] + "\n"
         draw.text(((offset_left + bar_left*2), y + textoffs_y - 1),events, font=fheadline)
 
-#        print(data[k]["organizer"]["emailAddress"])
+
+     # draw the vertical day separators and day headlines
+    for i in range(0, DAYS):
+        x = offset_left + bar_left + per_day * i
+        # for every but the first, draw separator to the left
+        if i > 0:
+            draw.line([(x, offset_top), (x, height)])
+        # draw date headline
+        day = worker.basetime + datetime.timedelta(days=i)
+        headline = day.strftime('%A %d')
+        textsize_x = draw.textsize(headline, fheadline)[0]
+        textoffs_x = math.floor((per_day - textsize_x) / 2)
+        draw.text((x + textoffs_x, offset_top), headline, font=fheadline)
 
 
      # draw horizontal hour separators and hour numbers
@@ -120,21 +114,12 @@ def right_part(draw):
             for j in range(offset_left, width, 4):
                 draw.point([(j, y)])
         # draw the hour number
-        draw.text((offset_left, y + textoffs_y - 1), "%02d" % (BEGIN_DAY + i), font=fheadline)
+        textoffs_y = math.floor((per_hour - text_size)/2 )
+        draw.text((offset_left, y + textoffs_y - 1), "%02d" % (BEGIN_DAY + i), font=fheadline)        
 
 
 
 
-
-
-
-
-
-
-# A FAIRE ICI
-        # if heure de l'evenemnt === actuel_hours
-        #actuel_hours = BEGIN_DAY + i
-        #print (actuel_hours)
 
 
 #        print (data[i]) 
