@@ -53,12 +53,6 @@ myUrl = "https://graph.microsoft.com/v1.0/me/calendarview"
 
 
 
-def get_calendar_events():
-
-    response = requests.get(myUrl, headers={ 'Authorization': token},params=query_params)
-    json_obj = response.json()
-    data = json_obj["value"]
-    return data
 
 def get_events_a_day():
 

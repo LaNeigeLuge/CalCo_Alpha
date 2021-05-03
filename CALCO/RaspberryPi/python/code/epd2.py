@@ -32,6 +32,8 @@ epd.Clear()
 
 font24 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 24)
 font18 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 18)
+font14 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 14)
+font12 = ImageFont.truetype(os.path.join(picdir, 'Font.ttc'), 12)
 fheadline = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', headline_size)
 ftext = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf', text_size)
 fbold = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf', text_size)
@@ -70,25 +72,62 @@ def right_part(draw):
 
     logging.info("Drawing right part ...")
     length = len(data)
-    start_hours = [] 
-    end_hours = []
+    start_hours_tday = []   #List of begin hours of events today
+    start_hours = []        #List of begin hours of events tomorrow
+    end_hours_tday = []     #List of end  hours of events today
+    end_hours = []          #List of end hours of events tomorrow
+    tday = worker.basetime
 
+    #Convert str date to dateTime
+    #Add the conversion in hours lists 
+    for date in data:
+         datetime_obj = parser.parse(date['start']["dateTime"])
+         if tday.date() == datetime_obj.date():
+             start_hours_tday.append( datetime_obj.strftime('%H.%M'))
+         else:
+             start_hours.append( datetime_obj.strftime(' %H.%M'))
 
- 
-    for k in range(length):
+         datetime_obj2 = parser.parse(date['end']["dateTime"])
+
+         if tday.date() == datetime_obj2.date():
+             end_hours_tday.append( datetime_obj2.strftime(' %H.%M'))
+         else:
+             end_hours.append( datetime_obj2.strftime('%H.%M'))
+
+    #Length of events today and tomorrow
+    length_today = len(start_hours_tday)
+    length_tmorrow = len(start_hours)
+
+    #draw today events
+    for k in range(length_today):
         y = offset_top + bar_top + offset_allday + per_hour * k
-
-        #Convert str date to dateTime
-        #Add the conversion in hours lists
-        for date in data:
-            datetime_obj = parser.parse(date['start']["dateTime"])
-            start_hours.append( datetime_obj.strftime('%H:%M'))
-            datetime_obj2 = parser.parse(date['end']["dateTime"])
-            end_hours.append( datetime_obj2.strftime('%H:%M'))
         textoffs_y = math.floor((per_hour - text_size)/2 )
-        #Concatenation to write
-        events =  start_hours[k] + "-" + end_hours[k] + "\n " + data[k]["organizer"]["emailAddress"]["name"] + "\n"
-        draw.text(((offset_left + bar_left*2), y + textoffs_y - 1),events, font=fheadline)
+
+        hours = float(start_hours_tday[k])
+        space = "                    "
+        #Concatenation to draw
+        today_events = space  + start_hours_tday[k] + "-" + end_hours_tday[k] + "\n " + data[k]["subject"] + "\n"
+        #draw.text(((offset_left + bar_left*2), y + textoffs_y - 1),today_events, font=fheadline)
+
+       #Here we have a switch case to put events in a grid
+        if hours >= 14 and hours <15:
+            print ("Ca marche")
+            draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12)
+
+
+
+    #draw today events
+    for f in range(length_tmorrow):
+        y = offset_top + bar_top + offset_allday + per_hour * f
+        textoffs_y = math.floor((per_hour - text_size)/2 )
+
+        #Concatenation to draw
+        next_events =  start_hours[f] + "-" + end_hours[f] + "\n " + data[f]["organizer"]["emailAddress"]["name"] + "\n"
+
+        #Drawing the events
+        draw.text(((2*offset_left - 6*bar_left), y + textoffs_y - 1),next_events, font=fheadline)
+
+
 
 
      # draw the vertical day separators and day headlines
@@ -97,6 +136,7 @@ def right_part(draw):
         # for every but the first, draw separator to the left
         if i > 0:
             draw.line([(x, offset_top), (x, height)])
+
         # draw date headline
         day = worker.basetime + datetime.timedelta(days=i)
         headline = day.strftime('%A %d')
