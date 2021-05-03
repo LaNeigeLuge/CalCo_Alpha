@@ -113,7 +113,28 @@ def right_part(draw):
         if hours >= 14 and hours <15:
             print ("Ca marche")
             draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12)
+        #function to draw text in the right place in function of hours
+        def switch_hours_text(hours):
+            switcher = {
+                9: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                10: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                11: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                12: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                13: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                14: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                15: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                16: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                17: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                18: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                19: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+            }
+            return switcher.get(hours,"heure non prévu dans le calendrier")
+        #calling switch hours function
+        switch_hours_text(hours)
 
+           
+           
+        
 
 
     #draw today events
