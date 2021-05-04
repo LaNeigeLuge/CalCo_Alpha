@@ -115,6 +115,38 @@ def right_part(draw):
             draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12)
 
 
+        #function to draw text in the right place in function of hours
+        def switch_hours_text(hours):
+            switcher = {
+                hours <= 9 and hours >= 8: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 10 and hours >= 9: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 11 and hours >= 10: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 12 and hours >= 11: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 13 and hours >= 12: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 14 and hours >= 13: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 15 and hours >= 14: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 16 and hours >= 15: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 17 and hours >= 16: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 18 and hours >= 17: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 19 and hours >= 18: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+                hours <= 20 and hours >= 19: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
+            }
+            return switcher.get(hours,"heure non prévu dans le calendrier")
+        #calling switch hours function
+        switch_hours_text(hours)
+
+           
+           
+
+
+
+
+
+
+
+
+
+
 
     #draw today events
     for f in range(length_tmorrow):
