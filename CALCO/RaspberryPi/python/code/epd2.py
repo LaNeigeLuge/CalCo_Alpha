@@ -76,9 +76,9 @@ def switch_hours(hours,events):
     if hours >= 8 and hours < 9:
         draw.text(((offset_left - 10 + bar_left*2), 50),events, font=font12)
     elif hours >= 9 and hours < 10:
-        draw.text(((offset_left - 10 + bar_left*2), 85),events, font=font12)
+        draw.text(((offset_left - 10 + bar_left*2), 85),events, font=font12)  
     elif hours >= 10 and hours < 11:
-        draw.text(((offset_left - 10 + bar_left*2), 120),events, font=font12)
+        draw.text(((offset_left - 10 + bar_left*2), 120),events, font=font12)      
     elif hours >= 11 and hours < 12:
         draw.text(((offset_left - 10 + bar_left*2), 155),events, font=font12)
     elif hours >= 12 and hours < 13:
@@ -99,7 +99,96 @@ def switch_hours(hours,events):
         draw.text(((offset_left - 10 + bar_left*2), 435),events, font=font12)
     else:
         logging.info("Error hours !!")
-
+'''
+def switch_hours2(hours,events,longueReu, off_l, off_lmin, ba_l):
+     
+    if hours >= 8 and hours < 9:
+        y = 50
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 9 and hours < 10:
+        y = 85
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)  
+    elif hours >= 10 and hours < 11:
+        y = 120
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)      
+    elif hours >= 11 and hours < 12:
+        y = 155
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    elif hours >= 12 and hours < 13:
+        y = 190
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    elif hours >= 13 and hours < 14:
+        y = 225
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    elif hours >= 14 and hours < 15:
+        y = 260
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    elif hours >= 15 and hours < 16: 
+        y = 295
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    elif hours >= 16 and hours < 17:
+        y = 330
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    elif hours >= 17 and hours < 18: 
+        y = 365 
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)        
+    elif hours >= 18 and hours < 19: 
+        y = 400
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    elif hours >= 19 and hours < 20: 
+        y = 435
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
+    else:
+        logging.info("Error hours !!")
+'''
 def switch_hours_next(hours,events):
 
     if hours >= 8 and hours < 9:
@@ -169,8 +258,14 @@ def right_part(draw):
         today_events =  start_hours_tday[k] + "-" + end_hours_tday[k] + "\n " + data[k]["subject"] + "\n"
         #draw.text(((offset_left + bar_left*2), y + textoffs_y - 1),today_events, font=fheadline)
 
-       #Here we have a switch case to put events in a grid
-        switch_hours(hours,today_events)
+        # check if the event take more than 1 hour:
+        longueReu = end_hours_tday[k]-start_hours_tday[k]
+        off_l = 2
+        off_lmin = 0
+        ba_l = 6
+        #Here we have a switch case to put events in a grid
+        switch_hours(hours_second_day)
+        #switch_hours2(hours,today_events, longueReu, off_l, off_lmin, ba_l)
 
 
 
@@ -184,7 +279,12 @@ def right_part(draw):
         next_events =  start_hours[f] + "-" + end_hours[f] + "\n " + data[f+length_today]["subject"] + "\n"
         #Drawing the events
         #draw.text(((2*offset_left - 6*bar_left), y + textoffs_y - 1),next_events, font=fheadline)
+        longueReu = end_hours_tday[k]-start_hours_tday[k]
+        off_l = 1
+        off_lmin = 10
+        ba_l = 2
         switch_hours_next(hours_second_day,next_events)
+        #switch_hours2(hours,today_events, longueReu, off_l, off_lmin, ba_l)
 
 
 
