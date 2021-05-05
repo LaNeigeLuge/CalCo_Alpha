@@ -49,7 +49,7 @@ def left_part(draw):
     # separate top bar from rest
     #draw.line([(offset_left, offset_top + bar_top - 1), (width, offset_top + bar_top - 1)], width=2)
     # separate all-day events from grid
-    #draw.line([(offset_left, offset_top + bar_top + offset_allday), (width, offset_top + bar_top + offset_allday)], width=2)
+    draw.line([(offset_left, offset_top + bar_top + offset_allday - 15), (width, offset_top + bar_top + offset_allday - 15)], width=2)
     # separate the left bar from the rest
     draw.line([(offset_left + bar_left -1, offset_top), (offset_left + bar_left - 1, height)], width=2)
 
@@ -67,6 +67,67 @@ def left_part(draw):
     draw.text((10, 290), '• Interdiction de manger !', font = font24, fill = 0)
     draw.text((100, 400), 'Bonne journée ! ;)', font = font24, fill = 0)
 
+
+
+
+
+def switch_hours(hours,events):
+     
+    if hours >= 8 and hours < 9:
+        draw.text(((offset_left - 10 + bar_left*2), 50),events, font=font12)
+    elif hours >= 9 and hours < 10:
+        draw.text(((offset_left - 10 + bar_left*2), 85),events, font=font12)
+    elif hours >= 10 and hours < 11:
+        draw.text(((offset_left - 10 + bar_left*2), 120),events, font=font12)
+    elif hours >= 11 and hours < 12:
+        draw.text(((offset_left - 10 + bar_left*2), 155),events, font=font12)
+    elif hours >= 12 and hours < 13:
+        draw.text(((offset_left - 10 + bar_left*2), 190),events, font=font12)
+    elif hours >= 13 and hours < 14:
+        draw.text(((offset_left - 10 + bar_left*2), 225),events, font=font12)
+    elif hours >= 14 and hours < 15:
+        draw.text(((offset_left - 10 + bar_left*2), 260),events, font=font12) #260
+    elif hours >= 15 and hours < 16: 
+        draw.text(((offset_left - 10 + bar_left*2), 295),events, font=font12)
+    elif hours >= 16 and hours < 17:
+        draw.text(((offset_left - 10 + bar_left*2), 330),events, font=font12)
+    elif hours >= 17 and hours < 18: 
+        draw.text(((offset_left - 10 + bar_left*2), 365),events, font=font12)
+    elif hours >= 18 and hours < 19: 
+        draw.text(((offset_left - 10 + bar_left*2), 400),events, font=font12)
+    elif hours >= 19 and hours < 20: 
+        draw.text(((offset_left - 10 + bar_left*2), 435),events, font=font12)
+    else:
+        logging.info("Error hours !!")
+
+def switch_hours_next(hours,events):
+
+    if hours >= 8 and hours < 9:
+        draw.text(((2*offset_left - 6*bar_left), 50),events, font=font12)
+    elif hours >= 9 and hours < 10:
+        draw.text(((2*offset_left - 6*bar_left), 85),events, font=font12)
+    elif hours >= 10 and hours < 11:
+        draw.text(((2*offset_left - 6*bar_left), 120),events, font=font12)
+    elif hours >= 11 and hours < 12:
+        draw.text(((2*offset_left - 6*bar_left), 155),events, font=font12)
+    elif hours >= 12 and hours < 13:
+        draw.text(((2*offset_left - 6*bar_left), 190),events, font=font12)
+    elif hours >= 13 and hours < 14:
+        draw.text(((2*offset_left - 6*bar_left), 225),events, font=font12)
+    elif hours >= 14 and hours < 15:
+        draw.text(((2*offset_left - 6*bar_left), 260),events, font=font12) #260
+    elif hours >= 15 and hours < 16:
+        draw.text(((2*offset_left - 6*bar_left), 295),events, font=font12)
+    elif hours >= 16 and hours < 17:
+        draw.text(((2*offset_left - 6*bar_left), 330),events, font=font12)
+    elif hours >= 17 and hours < 18:
+        draw.text(((2*offset_left - 6*bar_left), 365),events, font=font12)
+    elif hours >= 18 and hours < 19:
+        draw.text(((2*offset_left - 6*bar_left), 400),events, font=font12)
+    elif hours >= 19 and hours < 20:
+        draw.text(((2*offset_left - 6*bar_left), 435),events, font=font12)
+    else:
+        logging.info("Error hours !!")
 
 def right_part(draw):
 
@@ -102,63 +163,28 @@ def right_part(draw):
     for k in range(length_today):
         y = offset_top + bar_top + offset_allday + per_hour * k
         textoffs_y = math.floor((per_hour - text_size)/2 )
-
         hours = float(start_hours_tday[k])
-        space = "                    "
+#        space = "                    "
         #Concatenation to draw
-        today_events = space  + start_hours_tday[k] + "-" + end_hours_tday[k] + "\n " + data[k]["subject"] + "\n"
+        today_events =  start_hours_tday[k] + "-" + end_hours_tday[k] + "\n " + data[k]["subject"] + "\n"
         #draw.text(((offset_left + bar_left*2), y + textoffs_y - 1),today_events, font=fheadline)
 
        #Here we have a switch case to put events in a grid
-        if hours >= 14 and hours <15:
-            print ("Ca marche")
-            draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12)
-
-
-        #function to draw text in the right place in function of hours
-        def switch_hours_text(hours):
-            switcher = {
-                hours <= 9 and hours >= 8: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 10 and hours >= 9: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 11 and hours >= 10: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 12 and hours >= 11: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 13 and hours >= 12: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 14 and hours >= 13: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 15 and hours >= 14: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 16 and hours >= 15: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 17 and hours >= 16: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 18 and hours >= 17: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 19 and hours >= 18: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-                hours <= 20 and hours >= 19: draw.text(((offset_left - 10 + bar_left*2), 260),today_events, font=font12),
-            }
-            return switcher.get(hours,"heure non prévu dans le calendrier")
-        #calling switch hours function
-        switch_hours_text(hours)
-
-           
-           
+        switch_hours(hours,today_events)
 
 
 
-
-
-
-
-
-
-
-
-    #draw today events
+    #draw next events
     for f in range(length_tmorrow):
         y = offset_top + bar_top + offset_allday + per_hour * f
         textoffs_y = math.floor((per_hour - text_size)/2 )
-
+        
+        hours_second_day = float(start_hours[f])
         #Concatenation to draw
-        next_events =  start_hours[f] + "-" + end_hours[f] + "\n " + data[f]["organizer"]["emailAddress"]["name"] + "\n"
-
+        next_events =  start_hours[f] + "-" + end_hours[f] + "\n " + data[f+length_today]["subject"] + "\n"
         #Drawing the events
-        draw.text(((2*offset_left - 6*bar_left), y + textoffs_y - 1),next_events, font=fheadline)
-
+        #draw.text(((2*offset_left - 6*bar_left), y + textoffs_y - 1),next_events, font=fheadline)
+        switch_hours_next(hours_second_day,next_events)
 
 
 
@@ -211,6 +237,4 @@ if __name__ == "__main__":
     epd.init()
     epd.display(epd.getbuffer(Himage))
     epd.sleep()
-
-
 
