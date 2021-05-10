@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python 
 # -*- coding:utf-8 -*-
 
 
@@ -22,7 +22,7 @@ import worker
 from dateutil import parser
 logging.basicConfig(level=logging.DEBUG)
 
- 
+
 logging.info("epd7in5_V2 Demo")
 epd = epd7in5_V2.EPD()
 
@@ -70,15 +70,15 @@ def left_part(draw):
 
 
 
-
+'''
 def switch_hours(hours,events):
-     
+
     if hours >= 8 and hours < 9:
         draw.text(((offset_left - 10 + bar_left*2), 50),events, font=font12)
     elif hours >= 9 and hours < 10:
-        draw.text(((offset_left - 10 + bar_left*2), 85),events, font=font12)  
+        draw.text(((offset_left - 10 + bar_left*2), 85),events, font=font12)
     elif hours >= 10 and hours < 11:
-        draw.text(((offset_left - 10 + bar_left*2), 120),events, font=font12)      
+        draw.text(((offset_left - 10 + bar_left*2), 120),events, font=font12)
     elif hours >= 11 and hours < 12:
         draw.text(((offset_left - 10 + bar_left*2), 155),events, font=font12)
     elif hours >= 12 and hours < 13:
@@ -87,108 +87,19 @@ def switch_hours(hours,events):
         draw.text(((offset_left - 10 + bar_left*2), 225),events, font=font12)
     elif hours >= 14 and hours < 15:
         draw.text(((offset_left - 10 + bar_left*2), 260),events, font=font12) #260
-    elif hours >= 15 and hours < 16: 
+    elif hours >= 15 and hours < 16:
         draw.text(((offset_left - 10 + bar_left*2), 295),events, font=font12)
     elif hours >= 16 and hours < 17:
         draw.text(((offset_left - 10 + bar_left*2), 330),events, font=font12)
-    elif hours >= 17 and hours < 18: 
+    elif hours >= 17 and hours < 18:
         draw.text(((offset_left - 10 + bar_left*2), 365),events, font=font12)
-    elif hours >= 18 and hours < 19: 
+    elif hours >= 18 and hours < 19:
         draw.text(((offset_left - 10 + bar_left*2), 400),events, font=font12)
-    elif hours >= 19 and hours < 20: 
+    elif hours >= 19 and hours < 20:
         draw.text(((offset_left - 10 + bar_left*2), 435),events, font=font12)
     else:
         logging.info("Error hours !!")
-'''
-def switch_hours2(hours,events,longueReu, off_l, off_lmin, ba_l):
-     
-    if hours >= 8 and hours < 9:
-        y = 50
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-    elif hours >= 9 and hours < 10:
-        y = 85
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)  
-    elif hours >= 10 and hours < 11:
-        y = 120
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)      
-    elif hours >= 11 and hours < 12:
-        y = 155
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    elif hours >= 12 and hours < 13:
-        y = 190
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    elif hours >= 13 and hours < 14:
-        y = 225
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    elif hours >= 14 and hours < 15:
-        y = 260
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    elif hours >= 15 and hours < 16: 
-        y = 295
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    elif hours >= 16 and hours < 17:
-        y = 330
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    elif hours >= 17 and hours < 18: 
-        y = 365 
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)        
-    elif hours >= 18 and hours < 19: 
-        y = 400
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    elif hours >= 19 and hours < 20: 
-        y = 435
-        if longueReu > 1:
-            y = y+longueReu*35
-            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
-        else :
-            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12) 
-    else:
-        logging.info("Error hours !!")
-'''
+
 def switch_hours_next(hours,events):
 
     if hours >= 8 and hours < 9:
@@ -217,6 +128,96 @@ def switch_hours_next(hours,events):
         draw.text(((2*offset_left - 6*bar_left), 435),events, font=font12)
     else:
         logging.info("Error hours !!")
+'''
+def switch_hours2(hours,events,longueReu, off_l, off_lmin, ba_l):
+
+    if hours >= 8 and hours < 9:
+        y = 50
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 9 and hours < 10:
+        y = 85
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 10 and hours < 11:
+        y = 120
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 11 and hours < 12:
+        y = 155
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 12 and hours < 13:
+        y = 190
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 13 and hours < 14:
+        y = 225
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 14 and hours < 15:
+        y = 260
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 15 and hours < 16:
+        y = 295
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 16 and hours < 17:
+        y = 330
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 17 and hours < 18:
+        y = 365
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 18 and hours < 19:
+        y = 400
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    elif hours >= 19 and hours < 20:
+        y = 435
+        if longueReu > 1:
+            y = y+longueReu*35
+            draw.textbbox(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+        else :
+            draw.text(((off_l*offset_left - off_lmin + bar_left*ba_l), y),events, font=font12)
+    else:
+        logging.info("Error hours !!")
+
 
 def right_part(draw):
 
@@ -229,7 +230,7 @@ def right_part(draw):
     tday = worker.basetime
 
     #Convert str date to dateTime
-    #Add the conversion in hours lists 
+    #Add the conversion in hours lists
     for date in data:
          datetime_obj = parser.parse(date['start']["dateTime"])
          if tday.date() == datetime_obj.date():
@@ -252,39 +253,50 @@ def right_part(draw):
     for k in range(length_today):
         y = offset_top + bar_top + offset_allday + per_hour * k
         textoffs_y = math.floor((per_hour - text_size)/2 )
-        hours = float(start_hours_tday[k])
+        hours = float(start_hours_tday[k]) #Hours in float to compare
+        today_end_hours = float(end_hours_tday[k])
 #        space = "                    "
         #Concatenation to draw
         today_events =  start_hours_tday[k] + "-" + end_hours_tday[k] + "\n " + data[k]["subject"] + "\n"
         #draw.text(((offset_left + bar_left*2), y + textoffs_y - 1),today_events, font=fheadline)
 
-        # check if the event take more than 1 hour:
-        longueReu = end_hours_tday[k]-start_hours_tday[k]
-        off_l = 2
-        off_lmin = 0
-        ba_l = 6
+       #Here we have a switch case to put events in a grid
+       # switch_hours(hours,today_events)
+
+
+         # JULIEN
+         # check if the event take more than 1 hour:
+        longueReu = today_end_hours - hours
+        off_l = 1
+        off_lmin = 10
+        ba_l = 2
         #Here we have a switch case to put events in a grid
-        switch_hours(hours_second_day)
-        #switch_hours2(hours,today_events, longueReu, off_l, off_lmin, ba_l)
-
-
+        #switch_hours(hours_second_day)
+        switch_hours2(hours,today_events, longueReu, off_l, off_lmin, ba_l)
+        #JULIEN
 
     #draw next events
     for f in range(length_tmorrow):
         y = offset_top + bar_top + offset_allday + per_hour * f
         textoffs_y = math.floor((per_hour - text_size)/2 )
-        
+
         hours_second_day = float(start_hours[f])
+        end_hours_second_day = float(end_hours[f])
         #Concatenation to draw
         next_events =  start_hours[f] + "-" + end_hours[f] + "\n " + data[f+length_today]["subject"] + "\n"
         #Drawing the events
-        #draw.text(((2*offset_left - 6*bar_left), y + textoffs_y - 1),next_events, font=fheadline)
-        longueReu = end_hours_tday[k]-start_hours_tday[k]
-        off_l = 1
-        off_lmin = 10
-        ba_l = 2
-        switch_hours_next(hours_second_day,next_events)
-        #switch_hours2(hours,today_events, longueReu, off_l, off_lmin, ba_l)
+        #switch_hours_next(hours_second_day,next_events)
+
+
+       #JULIEN
+        longueReu2 = end_hours_second_day - hours_second_day
+        off_l = 2
+        off_lmin = 0
+        ba_l = -6
+        #switch_hours_next(hours_second_day,next_events)
+        switch_hours2(hours_second_day,today_events, longueReu2, off_l, off_lmin, ba_l)
+        #JULIEN
+
 
 
 
@@ -313,20 +325,20 @@ def right_part(draw):
                 draw.point([(j, y)])
         # draw the hour number
         textoffs_y = math.floor((per_hour - text_size)/2 )
-        draw.text((offset_left, y + textoffs_y - 1), "%02d" % (BEGIN_DAY + i), font=fheadline)        
+        draw.text((offset_left, y + textoffs_y - 1), "%02d" % (BEGIN_DAY + i), font=fheadline)
 
 
 
 
 
 
-#        print (data[i]) 
+#        print (data[i])
 #        print (i["organizer"])
 #        print (i["start"]["dateTime"])
 #        print (i["end"]["dateTime"])
 
 
-    
+
 
 if __name__ == "__main__":
     Himage = Image.new('1', (epd.width, epd.height), 255)  # 255: clear the frame
@@ -337,4 +349,3 @@ if __name__ == "__main__":
     epd.init()
     epd.display(epd.getbuffer(Himage))
     epd.sleep()
-
